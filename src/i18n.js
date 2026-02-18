@@ -18,7 +18,14 @@ const resources = {
       open: 'Buka',
       uploading: 'Mengunggah...',
       success: 'Berhasil!',
-      failed: 'Gagal'
+      failed: 'Gagal',
+      expires: 'Masa berlaku',
+      expires30s: '30 detik',
+      expires1m: '1 menit',
+      expires1d: '1 hari',
+      expires30d: '30 hari',
+      expires1y: '1 tahun',
+      expiresForever: 'Selamanya'
     }
   },
   en: {
@@ -37,7 +44,14 @@ const resources = {
       open: 'Open',
       uploading: 'Uploading...',
       success: 'Success!',
-      failed: 'Failed'
+      failed: 'Failed',
+      expires: 'Expires in',
+      expires30s: '30 seconds',
+      expires1m: '1 minute',
+      expires1d: '1 day',
+      expires30d: '30 days',
+      expires1y: '1 year',
+      expiresForever: 'Forever'
     }
   }
 }
@@ -48,9 +62,7 @@ i18n
     resources,
     lng: 'id',
     fallbackLng: 'id',
-    interpolation: {
-      escapeValue: false
-    }
+    interpolation: { escapeValue: false }
   })
 
 export default i18n
