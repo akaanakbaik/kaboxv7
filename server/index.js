@@ -6,6 +6,7 @@ import multer from 'multer';
 import TelegramBot from 'node-telegram-bot-api';
 import geoip from 'geoip-lite';
 import { uploadToProvider } from './storageManager.js';
+import { kv } from '@vercel/kv';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -54,7 +55,7 @@ app.post('/api/upload', upload.array('files', 5), async (req, res) => {
       results.push(result);
     }
 
-    await sendTelegram(`Upload Sukses\nJumlah: ${req.files.length}\nProvider random: digunakan semua`);
+    await sendTelegram(`Upload Sukses\nJumlah: ${req.files.length}\n8 Provider random digunakan`);
 
     res.json({ author: "aka", email: "akaanakbaik17@proton.me", success: true, data: results });
   } catch (err) {
@@ -63,7 +64,8 @@ app.post('/api/upload', upload.array('files', 5), async (req, res) => {
 });
 
 app.get('/files/:id/status', async (req, res) => {
-  for (const prov of ['supabase','neon','turso','appwrite','cloudinary','backblaze','imagekit','prisma']) {
+  const providers = ['supabase','neon','turso','appwrite','cloudinary','backblaze','imagekit','prisma'];
+  for (const prov of providers) {
     const data = await kv.get(`file:\( {prov}: \){req.params.id}`);
     if (data) return res.json({ success: true, data: { ...data, status: 'completed' } });
   }
@@ -71,7 +73,8 @@ app.get('/files/:id/status', async (req, res) => {
 });
 
 app.get('/files/:id', async (req, res) => {
-  for (const prov of ['supabase','neon','turso','appwrite','cloudinary','backblaze','imagekit','prisma']) {
+  const providers = ['supabase','neon','turso','appwrite','cloudinary','backblaze','imagekit','prisma'];
+  for (const prov of providers) {
     const data = await kv.get(`file:\( {prov}: \){req.params.id}`);
     if (data) return res.json({ success: true, data });
   }
@@ -79,7 +82,8 @@ app.get('/files/:id', async (req, res) => {
 });
 
 app.get('/files/:id/download', async (req, res) => {
-  for (const prov of ['supabase','neon','turso','appwrite','cloudinary','backblaze','imagekit','prisma']) {
+  const providers = ['supabase','neon','turso','appwrite','cloudinary','backblaze','imagekit','prisma'];
+  for (const prov of providers) {
     const data = await kv.get(`file:\( {prov}: \){req.params.id}`);
     if (data) return res.redirect(data.url);
   }
