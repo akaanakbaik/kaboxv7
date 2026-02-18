@@ -23,10 +23,11 @@ export const uploadToProvider = async (file, expiresType, req) => {
     addRandomSuffix: false
   })
 
-  const expirySeconds = {
+  const expiryMap = {
     '30s': 30, '1m': 60, '1d': 86400,
     '30d': 2592000, '1y': 31536000, 'forever': null
-  }[expiresType] || 2592000
+  }
+  const expirySeconds = expiryMap[expiresType] || 2592000
 
   const data = {
     id,
