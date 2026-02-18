@@ -1,5 +1,5 @@
 {
-  "name": "domku-box",
+  "name": "kabox",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -16,7 +16,7 @@
     "@vercel/blob": "^0.24.1",
     "@vercel/kv": "^1.0.0",
     "multer": "^1.4.5-lts.1",
-    "node-telegram-bot-api": "^0.66.1",
+    "node-telegram-bot-api": "^0.67.0",
     "shortid": "^2.2.16",
     "mime-types": "^2.1.35",
     "geoip-lite": "^1.4.10",
