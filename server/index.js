@@ -7,6 +7,7 @@ import TelegramBot from 'node-telegram-bot-api';
 import geoip from 'geoip-lite';
 import { uploadToProvider } from './storageManager.js';
 import { kv } from '@vercel/kv';
+import path from 'path';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,9 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(limiter);
+
+// Serve static files dari dist (untuk React SPA)
+app.use(express.static(path.join(process.cwd(), 'dist')));
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 500 * 1024 * 1024 } });
 
@@ -90,6 +94,8 @@ app.get('/files/:id/download', async (req, res) => {
   res.status(404).send('File not found');
 });
 
-app.get('*', (req, res) => res.sendFile('dist/index.html', { root: process.cwd() }));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'dist', 'index.html'));
+});
 
 app.listen(PORT);
