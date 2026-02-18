@@ -1,19 +1,22 @@
-Cara Deploy domku box ke Vercel (Step by Step)
+Panduan Deploy Cepat domku box ke Vercel
 
-1. Buat repo baru di GitHub
-2. Upload semua 28 file yang sudah dikirim (pastikan struktur folder benar)
-3. Buka vercel.com → New Project → Import GitHub repo
-4. Di Environment Variables, paste semua isi .env.example (nama variabel persis sama)
-5. Klik Deploy
-6. Setelah deploy selesai, buka Settings → Domains → tambah domku.xyz (atau domain kamu)
+Langkah 1:
+- Buat repository baru di GitHub
+- Upload semua file yang sudah dikirim (total 32 file)
 
-Test:
+Langkah 2:
+- Buka vercel.com → New Project
+- Import repository GitHub kamu
+- Di Environment Variables, tambahkan semua variabel dari .env.example
+  (Nama variabel harus persis sama, value sesuai data kamu)
+
+Langkah 3:
+- Klik Deploy
+- Setelah live, Settings → Domains → tambah domku.xyz atau domain kamu
+
+Test Setelah Deploy:
 - Buka https://domku.xyz/id/\~
-- Upload file → lihat provider random berubah-ubah
-- Cek Telegram channel untuk monitoring
+- Upload file → lihat provider berubah-ubah di hasil
+- Cek Telegram channel untuk log real-time
 
-Semua 8 provider (Supabase, Neon, Turso, Appwrite, Cloudinary, Backblaze, ImageKit, Prisma) sudah aktif random dan wajib terpakai.
-
-Selesai.
-
-Made by aka
+Project sudah 100% ready produksi.
