@@ -63,7 +63,7 @@ export default function Home() {
         <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-6xl font-semibold tracking-tighter mb-4">
           {t('uploadTitle')}
         </motion.h1>
-        <p className="text-zinc-400 text-xl">Multi Storage Random • Expired Custom</p>
+        <p className="text-zinc-400 text-xl">8 Provider Random • Supabase Neon Turso Appwrite Cloudinary Backblaze ImageKit Prisma</p>
       </div>
 
       <div ref={dropRef} onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop}
@@ -118,6 +118,7 @@ export default function Home() {
             {results.map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
                 className="card bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
+                <p className="text-xs text-zinc-500 mb-1">Provider: {item.provider}</p>
                 <p className="text-sm text-zinc-400 mb-2">{item.filename}</p>
                 <div className="bg-black/60 border border-zinc-700 rounded-2xl px-4 py-3 text-sm break-all font-mono mb-6">{item.url}</div>
                 <div className="flex gap-3">
