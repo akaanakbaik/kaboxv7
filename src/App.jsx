@@ -1,4 +1,4 @@
-import { Routes, Route, useParams } from 'react-router-dom'
+import { Routes, Route, Navigate, useParams } from 'react-router-dom'
 import { Toaster } from 'sonner'
 import Header from './components/Header'
 import Home from './pages/Home'
@@ -12,7 +12,9 @@ function AppContent() {
   const { lang } = useParams()
 
   useEffect(() => {
-    if (lang === 'en' || lang === 'id') i18n.changeLanguage(lang)
+    if (lang === 'en' || lang === 'id') {
+      i18n.changeLanguage(lang)
+    }
   }, [lang])
 
   return (
@@ -23,12 +25,18 @@ function AppContent() {
           <Route path="/:lang/\~" element={<Home />} />
           <Route path="/:lang/docs" element={<ApiDocs />} />
           <Route path="/:lang/terms" element={<Terms />} />
+          <Route path="/" element={<RootRedirect />} />
+          <Route path="*" element={<RootRedirect />} />
         </Routes>
       </main>
       <Footer />
       <Toaster position="top-center" richColors closeButton />
     </div>
   )
+}
+
+function RootRedirect() {
+  return <Navigate to="/id/\~" replace />
 }
 
 export default function App() {
