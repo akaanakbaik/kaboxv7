@@ -7,6 +7,8 @@ export default function Header() {
   const navigate = useNavigate()
   const { lang } = useParams()
 
+  const currentLang = lang || 'id'
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950 border-b border-zinc-800 backdrop-blur-md">
@@ -28,9 +30,9 @@ export default function Header() {
 
       <div className={`fixed top-0 bottom-0 right-0 w-80 bg-zinc-900 border-l border-zinc-800 z-50 transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : 'translate-x-full'} lg:hidden`}>
         <div className="p-8 pt-20 space-y-2">
-          <button onClick={() => { navigate(`/${lang || 'id'}/\~`); setSidebarOpen(false) }} className="w-full text-left px-6 py-4 text-lg hover:bg-zinc-800 rounded-2xl transition-all">Beranda</button>
-          <button onClick={() => { navigate(`/${lang || 'id'}/docs`); setSidebarOpen(false) }} className="w-full text-left px-6 py-4 text-lg hover:bg-zinc-800 rounded-2xl transition-all">Dokumentasi API</button>
-          <button onClick={() => { navigate(`/${lang || 'id'}/terms`); setSidebarOpen(false) }} className="w-full text-left px-6 py-4 text-lg hover:bg-zinc-800 rounded-2xl transition-all">Syarat & Ketentuan</button>
+          <button onClick={() => { navigate(`/${currentLang}/\~`); setSidebarOpen(false) }} className="w-full text-left px-6 py-4 text-lg hover:bg-zinc-800 rounded-2xl transition-all">Beranda</button>
+          <button onClick={() => { navigate(`/${currentLang}/docs`); setSidebarOpen(false) }} className="w-full text-left px-6 py-4 text-lg hover:bg-zinc-800 rounded-2xl transition-all">Dokumentasi API</button>
+          <button onClick={() => { navigate(`/${currentLang}/terms`); setSidebarOpen(false) }} className="w-full text-left px-6 py-4 text-lg hover:bg-zinc-800 rounded-2xl transition-all">Syarat & Ketentuan</button>
         </div>
       </div>
     </>
