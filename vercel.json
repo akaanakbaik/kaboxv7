@@ -1,16 +1,7 @@
 {
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/server/index.js"
-    },
-    {
-      "source": "/files/(.*)",
-      "destination": "/server/index.js"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/server/index.js"
-    }
+    { "source": "/api/:path*", "destination": "/server/index.js" },
+    { "source": "/files/:path*", "destination": "/server/index.js" },
+    { "source": "/:path*", "destination": "/server/index.js" }
   ]
 }
