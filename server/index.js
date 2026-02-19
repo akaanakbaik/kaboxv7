@@ -25,7 +25,6 @@ app.use(cors());
 app.use(express.json());
 app.use(limiter);
 
-// Serve static files dari dist (untuk React SPA)
 app.use(express.static(path.join(process.cwd(), 'dist')));
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 500 * 1024 * 1024 } });
@@ -38,11 +37,7 @@ app.use(async (req, res, next) => {
   const ip = req.ip || req.headers['x-forwarded-for'] || 'unknown';
   const country = geoip.lookup(ip)?.country || 'UNKNOWN';
   if (req.path.startsWith('/api/') || req.path.startsWith('/files/')) {
-    sendTelegram(`New Request\nIP: <code>${ip}</code>\nCountry: ${country}\nPath: ${req.path}\nDomain: kabox.my.id`);
-  }
-  if (req.path === '/' || req.path === '/\~') {
-    if (country === 'ID') return res.redirect(301, '/id/\~');
-    return res.redirect(301, '/en/\~');
+    sendTelegram(`New Request\nIP: <code>${ip}</code>\nCountry: ${country}\nPath: ${req.path}`);
   }
   next();
 });
@@ -59,7 +54,7 @@ app.post('/api/upload', upload.array('files', 5), async (req, res) => {
       results.push(result);
     }
 
-    await sendTelegram(`Upload Sukses ke kabox.my.id\nJumlah: ${req.files.length}\n8 Provider random digunakan`);
+    await sendTelegram(`Upload Sukses ke kabox.my.id\nJumlah: ${req.files.length}`);
 
     res.json({ author: "aka", email: "akaanakbaik17@proton.me", success: true, data: results });
   } catch (err) {
